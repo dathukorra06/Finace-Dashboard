@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Outfit", sans-serif;
+  
+  /* Standard colors */
+  --color-brand: #2563eb;
+  --color-brand-dark: #1e40af;
+  --color-brand-light: #eff6ff;
+
+  /* Refined Institutional Palette */
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1e293b;
+  --color-slate-900: #0f172a;
+  --color-slate-950: #020617;
+}
+
+/* Define the manual 'dark' variant for Tailwind 4 */
+@variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --bg-base: #f8fafc;
+    --bg-card: #ffffff;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --text-muted: #94a3b8;
+    --border-primary: #e2e8f0;
+    --border-subtle: #f1f5f9;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-premium: 0 10px 15px -3px rgb(0 0 0 / 0.04), 0 4px 6px -4px rgb(0 0 0 / 0.04);
+    --shadow-hover: 0 20px 25px -5px rgb(0 0 0 / 0.08), 0 8px 10px -6px rgb(0 0 0 / 0.08);
+  }
+
+  .dark {
+    --bg-base: #020617;
+    --bg-card: #0f172a;
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-muted: #64748b;
+    --border-primary: #1e293b;
+    --border-subtle: #0f172a;
+    --shadow-premium: 0 10px 15px -3px rgb(0 0 0 / 0.3), 0 4px 6px -4px rgb(0 0 0 / 0.3);
+    --shadow-hover: 0 20px 25px -5px rgb(0 0 0 / 0.4), 0 8px 10px -6px rgb(0 0 0 / 0.4);
+  }
+
+  body {
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    @apply antialiased font-sans transition-colors duration-300;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply backdrop-blur-md border transition-all;
+    background-color: color-mix(in srgb, var(--bg-card), transparent 30%);
+    border-color: var(--border-primary);
+  }
+
+  .card-premium {
+    background-color: var(--bg-card);
+    border-color: var(--border-primary);
+    box-shadow: var(--shadow-premium);
+    @apply rounded-2xl border transition-all duration-500 ease-out;
+  }
+  
+  .card-premium:hover {
+    box-shadow: var(--shadow-hover);
+    border-color: color-mix(in srgb, var(--border-primary), var(--color-brand) 30%);
+    @apply -translate-y-1;
+  }
+
+  .btn-brand {
+    @apply bg-brand text-white font-bold px-6 py-2.5 rounded-xl shadow-lg shadow-brand/20 hover:scale-105 active:scale-95 transition-all duration-300;
+  }
+
+  .badge-premium {
+    @apply text-[10px] font-bold px-2.5 py-1 rounded-lg uppercase tracking-wider transition-all duration-300;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { @apply bg-slate-200 rounded-full hover:bg-slate-300 transition-colors; }
+.dark ::-webkit-scrollbar-thumb { @apply bg-slate-800 hover:bg-slate-700; }
+
+/* Transitions */
+.transition-color-theme {
+  @apply transition-colors duration-300;
+}
+
+/* Dark mode generic overrides */
+.dark .text-slate-800, .dark .text-slate-900 { color: var(--text-primary) !important; }
+.dark .text-slate-600, .dark .text-slate-700 { color: var(--text-secondary) !important; }
+.dark .text-slate-500, .dark .text-slate-400 { color: var(--text-muted) !important; }
+.dark .bg-white { background-color: var(--bg-card) !important; }
+.dark .bg-slate-50 { background-color: var(--bg-base) !important; }
+.dark .bg-slate-100 { background-color: var(--bg-card) !important; }
+.dark .border-slate-100, .dark .border-slate-200 { border-color: var(--border-primary) !important; }
