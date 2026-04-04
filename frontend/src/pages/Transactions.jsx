@@ -98,22 +98,22 @@ const Transactions = () => {
     addTransaction(newTx);
   };
 
-  const exportToCSV = () => {
-    const headers = ['Date', 'Entity', 'Category', 'Type', 'Amount', 'Status'];
-    const rows = filteredTransactions.map(tx => [
-      tx.date, tx.entity, tx.category, tx.type, tx.amount, tx.status
-    ]);
-    const csvContent = "data:text/csv;charset=utf-8," 
-      + headers.join(",") + "\n"
-      + rows.map(e => e.join(",")).join("\n");
-    const encodedUri = encodeURI(csvContent);
-    const link = document.createElement("a");
-    link.setAttribute("href", encodedUri);
-    link.setAttribute("download", "transactions_export.csv");
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+  // const exportToCSV = () => {
+  //   const headers = ['Date', 'Entity', 'Category', 'Type', 'Amount', 'Status'];
+  //   const rows = filteredTransactions.map(tx => [
+  //     tx.date, tx.entity, tx.category, tx.type, tx.amount, tx.status
+  //   ]);
+  //   const csvContent = "data:text/csv;charset=utf-8," 
+  //     + headers.join(",") + "\n"
+  //     + rows.map(e => e.join(",")).join("\n");
+  //   const encodedUri = encodeURI(csvContent);
+  //   const link = document.createElement("a");
+  //   link.setAttribute("href", encodedUri);
+  //   link.setAttribute("download", "transactions_export.csv");
+  //   document.body.appendChild(link);
+  //   link.click();
+  //   document.body.removeChild(link);
+  // };
 
   const [editingTx, setEditingTx] = useState(null);
 
