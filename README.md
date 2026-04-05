@@ -80,5 +80,4 @@ A fully automated GitHub Actions workflow is available in `.github/workflows/dep
 - **Responsive Layout**: Designed to work on desktops, tablets, and phones.
 - **Dark Mode Support**: Built with future-proofing for dark mode toggle (CSS tokens ready).
 
----
-Built with ❤️ by Antigravity (Advanced Agentic AI) for a premium user experience.
+
